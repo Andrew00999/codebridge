@@ -1,0 +1,40 @@
+.list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  width: 100%;
+}
+
+.result {
+  margin: 2rem 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(14px, 1.7vw, 16px);
+  line-height: 100%;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+
+.read_more {
+  display: flex;
+  align-items: center;
+  column-gap: .7rem;
+  cursor: pointer;
+  position: absolute;
+  bottom: 2rem;
+  text-decoration: none;
+  color: #363636;
+
+  background: transparent;
+  border: 0;
+
+  p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(14px, 1.7vw, 16px);
+    line-height: 150%;
+  }
+}
