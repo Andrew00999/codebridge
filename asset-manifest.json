@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/codebridge/static/css/main.dec646de.css",
+    "main.js": "/codebridge/static/js/main.b4aa82aa.js",
+    "index.html": "/codebridge/index.html",
+    "main.dec646de.css.map": "/codebridge/static/css/main.dec646de.css.map",
+    "main.b4aa82aa.js.map": "/codebridge/static/js/main.b4aa82aa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dec646de.css",
+    "static/js/main.b4aa82aa.js"
+  ]
+}
