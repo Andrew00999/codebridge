@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react'
 import CardItem from '../CardItem';
 import { CardItemsIcons } from './CardItemsIcons';
 import cl from './cardList.module.scss';
+import { useMainContext } from '../../context/MainContext';
 
 import { Link } from 'react-router-dom';
 
@@ -13,20 +15,43 @@ interface ListTypes {
   url?: string;
 }
 
-export const CardList: React.FC = () => {
-  const [post, setPost] = useState([]);
-  const [preview, setPreview] = useState([]);
 
+export const CardList: React.FC = () => {
+  const { post, setPost, preview, setPreview, searchQuery } = useMainContext();
+  const [filteredValue, setFilteredValue] = useState([]);
+
+  // filter function
+  const filterCards = (searchText: string, listOfCards: []) => {
+    if (!searchText) {
+      return listOfCards
+    }
+    return (
+      listOfCards.filter(({ title }: any): string =>
+        title.toLowerCase().includes(searchText.toLowerCase())
+      ),
+      listOfCards.filter(({ body }: any): string =>
+        body.toLowerCase().includes(searchText.toLowerCase())
+      )
+    )
+  }
+
+  useEffect(() => {
+    const Debounce = setTimeout(() => {
+      const filteredCards = filterCards(searchQuery, post);
+      setFilteredValue(filteredCards)
+    }, 300);
+
+    return () => clearTimeout(Debounce);
+  }, [searchQuery, post])
+
+  // get posts
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
       .then(response => response.json())
       .then(json => setPost(json));
   }, []);
 
-  // useEffect(() => {
-  //   post.map((item: ListTypes) => console.log(item.title))
-  // }, [post]);
-
+  // get pictures
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/photos?_limit=10')
       .then(response => response.json())
@@ -35,9 +60,9 @@ export const CardList: React.FC = () => {
 
   return (
     <>
-      <p className={cl.result}>Results:</p>
+      <p className={cl.result}>Results: {filteredValue.length}</p>
       <div className={cl.list}>
-        {post.map((item: ListTypes) => (
+        {filteredValue.map((item: ListTypes) => (
           <CardItem
             key={item.id}
           >
