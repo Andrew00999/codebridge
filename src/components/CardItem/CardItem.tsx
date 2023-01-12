@@ -2,7 +2,7 @@ import React from 'react'
 import cl from './cardItem.module.scss';
 
 interface Props {
-  children: JSX.Element|JSX.Element[];
+  children: any;
 }
 
 export const CardItem = ({ children }: Props) => {

@@ -5,9 +5,11 @@ import cl from './home.module.scss';
 
 export const Home = () => {
   return (
-    <div className={cl.home}>
-      <Form />
-      <CardList />
+    <div className='container'>
+      <div className={cl.home}>
+        <Form />
+        <CardList />
+      </div>
     </div>
   )
 }
